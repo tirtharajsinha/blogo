@@ -28,6 +28,7 @@
     overflow: hidden;
     border-radius: 15px;
     height: 150px;
+    margin-bottom: 20px;
 }
 
 .serlist .title-img {
@@ -95,6 +96,7 @@
         padding-left: 15px;
         padding-right: 15px;
         margin: auto;
+        margin-bottom: 20px;
     }
     .serlist li .button {
         width: 100%;

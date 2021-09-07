@@ -248,9 +248,25 @@ def marked(request):
         except:
             page = bookmark(username=thisuser, blogid=id)
             page.save()
-            msg = "blog successfully added as favorite. View it in <strong>bookmarks</strong> tab."
+            msg = "blog successfully added as favorite. View it in --[ bookmarks ]-- tab."
 
     return JsonResponse({"msg": msg}, safe=False)
+
+
+def removemarked(request, id=-1):
+    if request.user.is_anonymous:
+        return redirect("/")
+
+    if id == -1:
+        return redirect("/marked")
+    else:
+        thisuser = str(request.user)
+        try:
+            blog = bookmark.objects.get(username=thisuser, blogid=id)
+            blog.delete()
+            return redirect("/bookmarked")
+        except:
+            return redirect("/bookmarked")
 
 
 def myblogs(request):
