@@ -55,7 +55,9 @@
 
                 </div>
             </div>
-            {{ blog_content.blog|safe }}
+            <div class="blogbody">
+                {{ blog_content.blog|safe }}
+            </div>
 
             <div class="comment-box">
                 <section id="wrapper">
@@ -82,9 +84,9 @@
                                 {{b.des}}
                             </p>
                         </div>
-                        <div class="button">
+                        <!-- <div class="button">
                             <a href="/blogs/{{b.id}}">Launch</a>
-                        </div>
+                        </div> -->
                     </li>
                 </a>
                 {% endfor %}
@@ -107,9 +109,9 @@
                                 {{b.des}}
                             </p>
                         </div>
-                        <div class="button">
+                        <!-- <div class="button">
                             <a href="/blogs/{{b.id}}">Launch</a>
-                        </div>
+                        </div> -->
                     </li>
                 </a>
                 {% endfor %}

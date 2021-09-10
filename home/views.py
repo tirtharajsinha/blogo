@@ -114,7 +114,7 @@ def deluser(request):
             messages.add_message(request, messages.ERROR,
                                  "authentication failed !!")
             return redirect("/")
-    return render(request, "auth.html")
+    return render(request, "auth.html", {"action": "/deluser"})
 
 
 def register(request):
@@ -275,7 +275,7 @@ def myblogs(request):
     thisuser = str(request.user)
     myown = blog.objects.all().filter(username=thisuser)
     # p=users[len(users)-1].pic.url
-    print(myown)
+    # print(myown)
 
     return render(request, "myblogs.html", {"myown": myown})
 
@@ -300,6 +300,39 @@ def upload(request):
         page.save()
 
     return render(request, "upload.html")
+
+
+def deleteblog(request, id=-1):
+    if request.user.is_anonymous:
+        return redirect("/")
+
+    if request.method == "POST":
+        username = str(request.user)
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            blogid = request.POST.get("blogid")
+            if blogid == -1:
+                return redirect("/")
+            else:
+                thisuser = str(request.user)
+                try:
+                    b = blog.objects.get(username=thisuser, id=blogid)
+                    b.delete()
+                    print("successfully found blog ", blogid)
+                    return redirect("/myblogs")
+                except Exception as e:
+                    # print(e)
+                    print("failed to find blog", blogid)
+                    return redirect("/myblogs")
+
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 "authentication failed !!")
+            print("authentication failed")
+            return redirect("/myblogs")
+    print(id)
+    return render(request, "auth.html", {"action": "/deleteblog", "blogid": id})
 
 
 @ csrf_exempt

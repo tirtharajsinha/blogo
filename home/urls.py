@@ -19,7 +19,8 @@ urlpatterns = [
     path('myblogs/', views.myblogs, name="myblogs"),
     path('blogs/', views.blogs, name="blogs"),
     path('blogs/<id>/', views.blogs, name="blogs"),
-    # path('blogs/', views.blogs, name="blogs"),
+    path('deleteblog/', views.deleteblog, name="deleteblog"),
+    path('deleteblog/<id>/', views.deleteblog, name="deleteblog"),
     path('upload/', views.upload, name="upload"),
     path('mdtohtml/', views.mdtohtml, name="mdtohtml"),
 
