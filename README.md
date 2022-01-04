@@ -1,7 +1,7 @@
 # blogo - a blog engine
 blogo is a blog service site built by tirtha
 
-### To access it, click <a href="http://tirtharaj098.pythonanywhere.com/">here</a>.<br>
+### To access it, click <a href="https://tirtharaj098.pythonanywhere.com/">here</a>.<br>
 
 ## Requirements to run source code locally 
 > python3 installed on system
