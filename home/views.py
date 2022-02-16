@@ -77,7 +77,7 @@ def loginuser(request):
 
             security_list = [";", ".", "=", "<", ">"]
             if any(ext in next_path for ext in security_list):
-                return redirect(next_path)
+                return redirect("/"+next_path.replace("/", ""))
 
             return redirect("/dashboard")
         else:
