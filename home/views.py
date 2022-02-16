@@ -75,7 +75,11 @@ def loginuser(request):
             if len(request.POST.get('next').strip()) > 0:
                 next_path = request.POST.get('next').strip()
 
-            return redirect(next_path)
+            security_list = [";", ".", "=", "<", ">"]
+            if any(ext in next_path for ext in security_list):
+                return redirect(next_path)
+
+            return redirect("/dashboard")
         else:
             messages.add_message(request, messages.INFO,
                                  "Wrong authentication details !! Try again.")
